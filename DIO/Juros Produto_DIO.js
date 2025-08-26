@@ -3,27 +3,27 @@
 // Utilize os códigos da tabela a seguir para ler qual a condição de pagamento escolhida e efetuar o cálculo adequado.
 
 // Código – Condição de pagamento:
-// À vista Débito → recebe 10% de desconto;
-// À vista no Dinheiro ou PIX → recebe 15% de desconto;
-// Em duas vezes → preço normal de etiqueta sem juros;
-// Acima de duas vezes → preço normal de etiqueta mais juros de 10%;
+// À vista Débito → recebe 10% de desconto; (1)
+// À vista no Dinheiro ou PIX → recebe 15% de desconto; (2)
+// Em duas vezes → preço normal de etiqueta sem juros; (3)
+// Acima de duas vezes → preço normal de etiqueta mais juros de 10%; (4)
 
 const prompt = require('prompt-sync')();
 
 let precoProduto = prompt("Digite o preço do produto");
-let metPagamento = prompt("Digite o método de pagamento:");
+let metPagamento = prompt("Digite o método de pagamento: Débito (1), Dinheiro ou PIX (2), Em até 2x (3), Além de 2x (4)");
 
-if (metPagamento === "Debito") {
+if (metPagamento === "1") {
     let valorDesconto = precoProduto * 0.1
-    console.log("O seu desconto será de: " + valorDesconto);
-} else if (metPagamento === "Dinheiro" && metPagamento === "PIX") {
+    console.log("O seu desconto será de: " + valorDesconto + ". Então o valor total da sua compra é de: R$" + (precoProduto - valorDesconto));
+} else if (metPagamento === "2") {
     let valorDesconto = precoProduto * 0.15
-    console.log("O seu desconto será de: " + valorDesconto);
-} else if (metPagamento === "Parcelar em 2x") {
-    console.log("Você não terá desconto");
-} else if (metPagamento === "Parcelar além de 2x") {
+    console.log("O seu desconto será de: " + valorDesconto + ". Então o valor total da sua compra é de: R$" + (precoProduto - valorDesconto));
+} else if (metPagamento === "3") {
+    console.log("Você não terá desconto. Então o valor total da sua compra é de: R$" + precoProduto);
+} else if (metPagamento === "4") {
     let valorJuros = precoProduto * 0.1
-    console.log("Os seus juros serão de: " + valorJuros);
+    console.log("Os seus juros serão de: " + valorJuros + ". Então o valor total da sua compra é de: R$" + (Number(precoProduto) + Number(valorJuros)));
 } else {
     console.log("Método de pagamento inválido");
 }
